@@ -48,5 +48,3 @@ else:
         print("you win")
     elif player == computer:
         print("it's a tie")
-
-print(computer)
