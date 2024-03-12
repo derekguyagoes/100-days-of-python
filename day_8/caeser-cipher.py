@@ -19,7 +19,6 @@ def caesar(start_text, shift_amount, cipher_direction):
 
     print(f"Here's the {cipher_direction}d result: {end_text}")
 
-
 print(logo)
 
 play_again = True
