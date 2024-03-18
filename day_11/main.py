@@ -1,6 +1,7 @@
 ############### Blackjack Project #####################
 import random
 
+
 # Difficulty Normal 😎: Use all Hints below to complete the project.
 # Difficulty Hard 🤔: Use only Hints 1, 2, 3 to complete the project.
 # Difficulty Extra Hard 😭: Only use Hints 1 & 2 to complete the project.
@@ -23,10 +24,10 @@ import random
 
 # Hint 4: Create a deal_card() function that uses the List below to *return* a random card.
 # 11 is the Ace.
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 
 def deal_card():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     return random.choice(cards)
 
 
@@ -40,19 +41,19 @@ def start():
     global computer_cards
     user_cards = []
     computer_cards = []
-    for x in range(0, 2):
+    for _ in range(2):
         user_cards.append(deal_card())
         computer_cards.append(deal_card())
 
 
-def calculate_score(c):
-    score = sum(c)
-    if score == 21 and len(c) == 2:
+def calculate_score(cards):
+    score = sum(cards)
+    if score == 21 and len(cards) == 2:
         return 0  # blackjack
-    if 11 in c and score > 21:
-        c.remove(11)
-        c.append(1)
-        score = sum(c)
+    if 11 in cards and score > 21:
+        cards.remove(11)
+        cards.append(1)
+        score = sum(cards)
 
     return score
 
@@ -80,25 +81,24 @@ def compare(user_score, computer_score):
     # If none of the above, then the player with the highest score wins.
     else:
         if user_score > computer_score:
-            print("user wins")
+            print(f"user wins with {user_score}")
         else:
-            print("dealer wins")
+            print(f"dealer wins with {computer_score}")
 
 
 game_over = False
 start()
 
 while not game_over:
-    print(user_cards)
-    print(computer_cards)
 
     user_score = calculate_score(user_cards)
     computer_score = calculate_score(computer_cards)
 
-    if user_score == 0 or computer_score == 0:
-        game_over = True
-    elif user_score == 21:
-        game_over = True
+    print(f"    Your cards: {user_cards}, current score: {user_score}")
+    print(f"    Dealer cards: {computer_cards[0]} ")
+
+    if user_score == 0 or computer_score == 0 or user_score == 21:
+        compare(user_score, computer_score)
     else:
         player_wants_more_cards = input("do you want another card? hit/stand: ")
         if player_wants_more_cards == "hit":
@@ -108,8 +108,9 @@ while not game_over:
                 computer_cards.append(deal_card())
                 computer_score = calculate_score(computer_cards)
             compare(user_score, computer_score)
-            if input("do you want to play again? yes/no") == "yes":
-                clear_screen()
-                start()
-            else:
-                game_over = True
+
+    if input("do you want to play again? yes/no\n") == "yes":
+        clear_screen()
+        start()
+    else:
+        game_over = True
