@@ -15,6 +15,13 @@ def get_a_thing(first):
     return candidate
 
 
+def check_answer(guess, a_followers, b_followers):
+    if a_followers > b_followers:
+        return guess == "A"
+    else:
+        return guess == "B"
+
+
 keep_playing = True
 score = 0
 champion = random.choice(data)
@@ -28,24 +35,12 @@ while keep_playing:
     print(f"Against B: {challenger["name"]} a {challenger["description"]} from {challenger["country"]}")
     guess = input("Who has more followers? Choose 'A' or 'B': ").upper()
 
-    if guess == 'A':
-        if champion["follower_count"] > challenger["follower_count"]:
-            score += 1
-            print(f"correct a > b current score: {score}")
-            clear_screen()
-        else:
-            keep_playing = False
-            print(f"wrong b < a final score: {score}")
+    is_correct = check_answer(guess, champion["follower_count"], challenger["follower_count"])
 
-    elif guess == 'B':
-        if challenger["follower_count"] > champion["follower_count"]:
-            print(f"correct b>a current score: {score}")
-            score += 1
-            champion = challenger
-            clear_screen()
-        else:
-            keep_playing = False
-            print(f"wrong b < a final score: {score}")
+    if is_correct:
+        score += 1
+        print(f"correct a > b current score: {score}")
+        clear_screen()
     else:
-        print("bad input, exiting")
         keep_playing = False
+        print(f"wrong b < a final score: {score}")
