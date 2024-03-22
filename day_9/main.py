@@ -1,11 +1,7 @@
+from helpers import clear_screen
 from art import logo
 
 print(logo)
-
-
-def clear_screen():
-    print("\n" * 100)
-
 
 def find_highest_bidder():
     highest_bid = 0

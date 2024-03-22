@@ -2,6 +2,7 @@ import random
 
 from day_14.art import *
 from game_data import data as data
+from helpers import clear_screen
 
 print(logo)
 
@@ -31,6 +32,7 @@ while keep_playing:
         if champion["follower_count"] > challenger["follower_count"]:
             score += 1
             print(f"correct a > b current score: {score}")
+            clear_screen()
         else:
             keep_playing = False
             print(f"wrong b < a final score: {score}")
@@ -40,6 +42,7 @@ while keep_playing:
             print(f"correct b>a current score: {score}")
             score += 1
             champion = challenger
+            clear_screen()
         else:
             keep_playing = False
             print(f"wrong b < a final score: {score}")
