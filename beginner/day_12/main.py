@@ -1,7 +1,7 @@
 ### number guessing game ###
 import random
 
-from day_12.art import logo
+from beginner.day_12.art import logo
 
 EASY_LEVEL_TURNS = 10
 HARD_LEVEL_TURNS = 5

@@ -1,6 +1,6 @@
 import random
 
-from day_14.art import *
+from beginner.day_14.art import *
 from game_data import data as data
 from helpers import clear_screen
 
