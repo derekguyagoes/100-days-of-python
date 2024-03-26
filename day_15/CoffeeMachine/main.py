@@ -110,7 +110,6 @@ while making_coffee:
             total_amount_received = process_coins()
             desireds_cost = MENU[desire]['cost']
             if total_amount_received >= desireds_cost:
-                # change
                 if total_amount_received > desireds_cost:
                     change_due = total_amount_received - desireds_cost
                     if change_due < -0.01:
