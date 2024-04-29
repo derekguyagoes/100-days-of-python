@@ -14,29 +14,26 @@ def move_backwards():
     tim.backward(10)
 
 
-def move_counter_clockwise():
+def turn_right():
+    tim.setheading(tim.heading() - 10)
 
-    tim.setheading(tim.heading() - 45)
 
-
-def move_clockwise():
-
-    tim.setheading(tim.heading() + 45)
+def turn_left():
+    tim.setheading(tim.heading() + 10)
 
 
 def clear_and_centered():
-    tim.penup()
-    tim.goto(0, 0)
-    tim.setheading(90)
     tim.clear()
+    tim.penup()
+    tim.home()
     tim.pendown()
 
 
 screen.onkey(key="w", fun=move_forwards)
 
 screen.onkey(key="s", fun=move_backwards)
-screen.onkey(key="a", fun=move_counter_clockwise)
-screen.onkey(key="d", fun=move_clockwise)
+screen.onkey(key="a", fun=turn_right)
+screen.onkey(key="d", fun=turn_left)
 screen.onkey(key="c", fun=clear_and_centered)
 
 screen.exitonclick()
