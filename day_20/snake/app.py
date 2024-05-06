@@ -18,24 +18,22 @@ screen.bgcolor('black')
 screen.title("my snake game")
 screen.tracer(0)
 
-segment = []
 
-starting_positions = [(0, 0), (-20, 0), (-40, 0)]
+snake = Snake()
 
-for position in starting_positions:
-    new = Snake(position)
-
-    segment.append(new)
+screen.listen()
+screen.onkey(snake.up,"Up")
+screen.onkey(snake.down,"Down")
+screen.onkey(snake.left,"Left")
+screen.onkey(snake.right,"Right")
 
 game_is_on = True
 while game_is_on:
     screen.update()
     time.sleep(0.1)
 
-    for seg_num in range(len(segment) - 1, 0, -1):
-        new_x = segment[seg_num - 1].xcor()
-        new_y = segment[seg_num - 1].ycor()
-        segment[seg_num].goto(new_x, new_y)
-    segment[0].forward(20)
+    snake.move()
+
+
 
 screen.exitonclick()
