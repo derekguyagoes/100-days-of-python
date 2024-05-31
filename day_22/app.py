@@ -1,5 +1,8 @@
+import time
 from turtle import Screen, Turtle
 
+from day_22.Paddle import Paddle
+from ball import Ball
 
 # pong
 # screate teh screen divider in the middle
@@ -22,27 +25,21 @@ divider.goto(0, -780)
 divider.color("white")
 divider.goto(0,800)
 
-paddle = Turtle()
-paddle.shape("square")
-paddle.shapesize(stretch_wid=5, stretch_len=1)
-paddle.color("white")
-paddle.penup()
-paddle.goto(350, 0)
-
-def go_up():
-    new_y = paddle.ycor() + 20
-    paddle.goto(paddle.xcor(), new_y)
-
-def go_down():
-    new_y = paddle.ycor() - 20
-    paddle.goto(paddle.xcor(), new_y)
+rightPaddle = Paddle(350)
+leftPaddle = Paddle(-350)
 
 screen.listen()
-screen.onkey(go_up, "Up")
-screen.onkey(go_down, "Down")
+screen.onkey(rightPaddle.go_up, "Up")
+screen.onkey(rightPaddle.go_down, "Down")
+screen.onkey(leftPaddle.go_up, "w")
+screen.onkey(leftPaddle.go_down, "s")
+
+ball = Ball()
 
 game_is_on = True
 while game_is_on:
+    time.sleep(0.1)
     screen.update()
+    ball.move()
 
 screen.exitonclick()
