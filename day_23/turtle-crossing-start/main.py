@@ -13,6 +13,7 @@ screen.listen()
 screen.onkey(player.move, "Up")
 
 car_manager = CarManager()
+scoreboard = Scoreboard()
 
 game_is_on = True
 
@@ -21,3 +22,7 @@ while game_is_on:
     screen.update()
     car_manager.create_car()
     car_manager.move_cars()
+
+    if player.at_finish_line():
+        car_manager.increase_speed()
+        scoreboard.increase_score()
