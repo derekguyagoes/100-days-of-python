@@ -19,3 +19,5 @@ game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+    car_manager.create_car()
+    car_manager.move_cars()
