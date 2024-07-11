@@ -1,5 +1,4 @@
 import random
-import time
 from turtle import Turtle
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
@@ -13,7 +12,7 @@ class CarManager:
         self.all_cars = []
 
     def create_car(self):
-        random_change = random.randint(1,6)
+        random_change = random.randint(1, 6)
         if random_change == 1:
             new_car = Turtle('square')
             new_car.shapesize(stretch_wid=1, stretch_len=2)
@@ -27,12 +26,7 @@ class CarManager:
     def move_cars(self):
         for car in self.all_cars:
             car.backward(car.speed)
-            print(car.speed)
 
     def increase_speed(self):
-         global MOVE_INCREMENT
-         MOVE_INCREMENT += 10
-
-    def reset(self):
         global MOVE_INCREMENT
-        MOVE_INCREMENT = 10
+        MOVE_INCREMENT += 10
