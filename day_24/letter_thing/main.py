@@ -1,5 +1,11 @@
 #TODO: Create a letter using starting_letter.txt 
 #for each name in invited_names.txt
+import os
+
+import helpers
+
+helpers.delete_garb_files(f"{os.getcwd()}/Output/garb")
+
 
 with open("./Input/Letters/starting_letter.txt") as file:
     letter = file.readlines()
