@@ -11,10 +11,11 @@ with open("./Input/Letters/starting_letter.txt") as file:
     letter = file.readlines()
 
 with open("./Input/Names/invited_names.txt") as names_file:
-    r = names_file.readlines()
+    r = (names_file.readlines())
 
-    for name in r:
-        with open(f"./Output/garb/{name}", "w") as output_file:
+    for n in r:
+        name = n.strip()
+        with open(f"./Output/ReadyToSend/{name}", "w") as output_file:
             for line in letter:
                 if "[name]" in line:
                     output_file.write(line.replace("[name]", name))
