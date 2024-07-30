@@ -3,21 +3,14 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="/a.csv">
+        <entry key="/day_25/day-25-us-states-game-start/50_states.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
-        <entry key="/day_25/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20240724.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/day_25/scooter_count.csv">
+        <entry key="/day_25/scooterville/2018_Central_Park_Squirrel_Census_-_Squirrel_Data_20240724.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -25,6 +18,13 @@
           </value>
         </entry>
         <entry key="/day_25/scooterville/scooter_count.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/day_25/weather_data.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
