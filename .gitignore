@@ -161,3 +161,4 @@ cython_debug/
 #.idea/
 /day_24/letter_thing/Output/garb/
 /day_24/letter_thing/Output/ReadyToSend/*
+/day_25/day-25-us-states-game-start/states_to_learn.csv
