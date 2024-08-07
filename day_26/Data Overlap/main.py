@@ -1,10 +1,10 @@
 with open("./file1.txt") as f:
-    f1 = [eval(i) for i in f.readlines()]
+    f1 = [i for i in f.readlines()]
 
 with open("./file2.txt") as f:
-    f2 = [eval(i) for i in f.readlines()]
+    f2 = [i for i in f.readlines()]
 
-result = [item for item in f1 if item in f2]
+result = [int(item) for item in f1 if item in f2]
 
 print(result)
 
