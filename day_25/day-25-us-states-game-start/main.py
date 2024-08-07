@@ -26,11 +26,10 @@ while len(guessed_states) < 50:
         prompt="Which state do you want to play?",
     ).title()
 
+    # new_list = [new_item for item in list]
+    # new_list = [new_item for item in list if test]
     if answer_state == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guessed_states]
 
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
