@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/day_26/NATO-alphabet-start/nato_phonetic_alphabet.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

@@ -40,6 +40,6 @@ while len(guessed_states) < 50:
         else:
             state_data = data[data.state == answer_state]
             guessed_states.append(answer_state)
-            t.goto(state_data.x.n(), state_data.y.n())
+            t.goto(state_data.data.phoentic_dict(), state_data.y.phoentic_dict())
 
             t.write(answer_state)
