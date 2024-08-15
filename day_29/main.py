@@ -1,5 +1,19 @@
 from tkinter import *
 
+
+def add():
+    # writes to file
+    # website | username | password
+    pass
+
+
+def generate():
+    # generates password
+    # prints to screen
+    # copies to clipboard
+    pass
+
+
 window = Tk()
 window.title("Password Manager")
 
@@ -22,10 +36,10 @@ password_label = Label(text="Password")
 password_label.grid(row=3, column=1)
 password_entry = Entry()
 password_entry.grid(row=3, column=2)
-password_generate_button = Button(text="Generate Password")
+password_generate_button = Button(text="Generate Password", command=generate)
 password_generate_button.grid(row=3, column=3)
 
-add_button = Button(text="Add")
+add_button = Button(text="Add", command=add)
 add_button.grid(row=4, column=1)
 
 window.mainloop()
