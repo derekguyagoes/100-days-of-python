@@ -1,5 +1,4 @@
 import json
-from json import JSONDecodeError
 from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
@@ -88,15 +87,23 @@ def add():
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo("Error", f"Please fill all fields missing:")
     else:
-        with open("data.json", "r") as file:
-            # reading old data
-            data = json.load(file)
-            # updating old with new
-            data.update(new_data)
-        with open("data.json", "w") as file:
-            # saving update
-            json.dump(data, file, indent=4)
+        # reading old data
+        try:
+            with open("data.json", "r") as file:
+                data = json.load(file)
+                # updating old with new
+                data.update(new_data)
 
+        except FileNotFoundError:
+            with open("data.json", "w") as file:
+                json.dump(new_data, file, indent=4)
+
+        else:
+            data.update(new_data)
+            with open("data.json", "w") as file:
+                json.dump(data, file, indent=4)
+
+        finally:
             website_entry.delete(0, END)
             password_entry.delete(0, END)
 
