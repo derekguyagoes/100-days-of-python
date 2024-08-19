@@ -108,6 +108,23 @@ def add():
             password_entry.delete(0, END)
 
 
+def search():
+    website_to_find = website_entry.get()
+    try:
+        with open("data.json", "r") as file:
+            data = json.load(file)
+            try:
+                found = data[website_to_find]
+                messagebox.showinfo(
+                    title=website_to_find,
+                    message=f"Email: {found['email']}\n Password: {found['password']}",
+                )
+            except KeyError:
+                messagebox.showinfo(message=f"{website_to_find} not found")
+    except FileNotFoundError:
+        messagebox.showinfo(message="data file not found")
+
+
 window = Tk()
 window.title("Password Manager")
 window.config(padx=50, pady=50)
@@ -119,9 +136,11 @@ canvas.grid(row=0, column=1)
 
 website_label = Label(text="Website")
 website_label.grid(row=1, column=0)
-website_entry = Entry(width=35)
+website_entry = Entry(width=21)
 website_entry.focus()
-website_entry.grid(row=1, column=1, columnspan=2)
+website_entry.grid(row=1, column=1)
+website_search_button = Button(text="Search", width=13, command=search)
+website_search_button.grid(row=1, column=2)
 
 user_label = Label(text="Email/Username")
 user_label.grid(row=2, column=0)
