@@ -113,6 +113,7 @@ def search():
     try:
         with open("data.json", "r") as file:
             data = json.load(file)
+            # this should be an if/else instead of a try catch. oh well.
             try:
                 found = data[website_to_find]
                 messagebox.showinfo(
