@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/day_31/flash-card-project-start/data/words_to_learn.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
