@@ -4,11 +4,11 @@ import helpers
 
 helpers.delete_garb_files(f"{os.getcwd()}/Output/ReadyToSend")
 
-with open("./Input/Letters/starting_letter.txt") as file:
+with open("Input/Letters/starting_letter.txt") as file:
     letter = file.readlines()
 
-with open("./Input/Names/invited_names.txt") as names_file:
-    names = (names_file.readlines())
+with open("Input/Names/invited_names.txt") as names_file:
+    names = names_file.readlines()
 
 for n in names:
     name = n.strip()

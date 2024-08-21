@@ -159,9 +159,9 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
-/day_24/letter_thing/Output/garb/
-/day_24/letter_thing/Output/ReadyToSend/*
-/day_25/day-25-us-states-game-start/states_to_learn.csv
-/day_29/password-manager-start/data.txt
-/day_30/password-manager-start/data.json
-/day_31/flash-card-project-start/data/words_to_learn.csv
+/intermediate/day_24/letter_thing/Output/garb/
+/intermediate/day_24/letter_thing/Output/ReadyToSend/*
+/intermediate/day_25/day-25-us-states-game-start/states_to_learn.csv
+/intermediate/day_29/password-manager-start/data.txt
+/intermediate/day_30/password-manager-start/data.json
+/intermediate/day_31/flash-card-project-start/data/words_to_learn.csv

@@ -1,9 +1,9 @@
 import time
 from turtle import Screen, Turtle
 
-from day_22.Paddle import Paddle
+from intermediate.day_22.Paddle import Paddle
 from ball import Ball
-from day_22.scoreboard import Scoreboard
+from intermediate.day_22.scoreboard import Scoreboard
 
 # pong
 # screate teh screen divider in the middle
@@ -16,7 +16,7 @@ from day_22.scoreboard import Scoreboard
 
 screen = Screen()
 screen.setup(width=800, height=600)
-screen.bgcolor('black')
+screen.bgcolor("black")
 screen.title("pong")
 screen.tracer(0)
 
@@ -48,12 +48,16 @@ while game_is_on:
     if ball.ycor() > 280 or ball.ycor() < -280:
         ball.bounce_y()
 
-    #detect collision with right paddle
-    if (ball.distance(rightPaddle) < 50 and ball.xcor() > 320 or
-            ball.distance(leftPaddle) < 50 and ball.xcor() < -320):
+    # detect collision with right paddle
+    if (
+            ball.distance(rightPaddle) < 50
+            and ball.xcor() > 320
+            or ball.distance(leftPaddle) < 50
+            and ball.xcor() < -320
+    ):
         ball.bounce_x()
 
-    #detect when right paddle misses
+    # detect when right paddle misses
     if ball.xcor() > 380:
         ball.reset_position()
         scoreboard.l_point()
