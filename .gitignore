@@ -165,3 +165,5 @@ cython_debug/
 /intermediate/day_29/password-manager-start/data.txt
 /intermediate/day_30/password-manager-start/data.json
 /intermediate/day_31/flash-card-project-start/data/words_to_learn.csv
+*.ini
+*.project_config
