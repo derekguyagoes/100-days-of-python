@@ -1,7 +1,7 @@
 import requests
 
 # https://api.openweathermap.org/data/2.5/weather?q=London,UK&appid=113cd993a406a4382f9a012fca93100b
-api_key = "113cd993a406a4382f9a012fca93100b"
+api_key = ""  # appId
 lat = 40.569710
 lon = -111.897278
 OWM_endpoint = "https://api.openweathermap.org/data/2.5/forecast"
