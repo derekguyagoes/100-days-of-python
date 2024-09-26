@@ -6,6 +6,7 @@ import configparser
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
+COMPANY_SEARCH_NAME = "tesla"
 
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
@@ -13,6 +14,7 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 config = configparser.ConfigParser()
 config.read("config.ini")
 key = config["DEFAULT"]["key"]
+news_api = config["DEFAULT"]["news_api"]
 
 
 def get_stock_difference_percent():
@@ -49,28 +51,28 @@ def get_stock_difference_percent():
 
 
 def get_news():
-    return "get news"
+    url = f"{NEWS_ENDPOINT}?q={COMPANY_SEARCH_NAME}&apiKey={news_api}"
+    response = requests.get(url)
+    data = response.json()
+    three = data["articles"][:3]
+
+    three_articles = {index["title"]: index["content"] for index in three}
+    return three_articles
+
+
+def send_messages(news, percent):
+    for key in news:
+        message = f"""{STOCK_ENDPOINT}: {percent}%\n
+                    Headline: {key}\n
+                    Brief: {news[key][:90]}\n                    
+                    """
+        print(message)
 
 
 percent = get_stock_difference_percent()
 if percent > 5:
-    print(get_news())
-
-## STEP 2: https://newsapi.org/
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
-
-# TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
-
-# TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
-
-
-## STEP 3: Use twilio.com/docs/sms/quickstart/python
-# to send a separate message with each article's title and description to your phone number.
-
-# TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
-
-# TODO 9. - Send each article as a separate message via Twilio.
-
+    news = get_news(percent)
+    send_messages(news)
 
 # Optional TODO: Format the message like this:
 """
