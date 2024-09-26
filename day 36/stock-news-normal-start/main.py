@@ -1,5 +1,4 @@
 import json
-
 import requests
 import datetime as dt
 import configparser
@@ -15,15 +14,16 @@ config = configparser.ConfigParser()
 config.read("config.ini")
 key = config["DEFAULT"]["key"]
 news_api = config["DEFAULT"]["news_api"]
+up_down = None
 
 
-def get_stock_difference_percent():
+def get_stock_difference_percent(offline=False):
     url = (
         f"{STOCK_ENDPOINT}?function=TIME_SERIES_DAILY&symbol={STOCK_NAME}&apikey={key}"
     )
     r = requests.get(url)
 
-    if "Thank you for using Alpha Vantage!" not in r.text:
+    if "Thank you for using Alpha Vantage!" not in r.text or offline:
         data = r.json()
         yesterday = (dt.date.today() - dt.timedelta(days=1)).strftime("%Y-%m-%d")
         day_before_yesterdays = (dt.date.today() - dt.timedelta(days=2)).strftime(
@@ -39,20 +39,24 @@ def get_stock_difference_percent():
     day_before_yesterdays_closing = eval(
         data["Time Series (Daily)"][day_before_yesterdays]["4. close"]
     )
-    percent = round(
-        (
-                abs(yesterdays_closing - day_before_yesterdays_closing)
-                / day_before_yesterdays_closing
-        )
-        * 100.0
-    )
+    difference = yesterdays_closing - day_before_yesterdays_closing
+    global up_down
+    if difference > 0:
+        up_down = "🔺"
+    else:
+        up_down = "🔻"
+
+    percent = round((difference / day_before_yesterdays_closing) * 100.0)
 
     return percent
 
 
 def get_news():
-    url = f"{NEWS_ENDPOINT}?q={COMPANY_SEARCH_NAME}&apiKey={news_api}"
-    response = requests.get(url)
+    news_params = {
+        "apiKey": news_api,
+        "qInTitle": COMPANY_NAME,
+    }
+    response = requests.get(NEWS_ENDPOINT, news_params)
     data = response.json()
     three = data["articles"][:3]
 
@@ -61,26 +65,16 @@ def get_news():
 
 
 def send_messages(news, percent):
+    global up_down
     for key in news:
-        message = f"""{STOCK_ENDPOINT}: {percent}%\n
-                    Headline: {key}\n
-                    Brief: {news[key][:90]}\n                    
+        message = f"""{STOCK_ENDPOINT}: {up_down} {percent}%
+                    Headline: {key}
+                    Brief: {news[key][:90]}                    
                     """
         print(message)
 
 
-percent = get_stock_difference_percent()
-if percent > 5:
-    news = get_news(percent)
-    send_messages(news)
-
-# Optional TODO: Format the message like this:
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
+percent = get_stock_difference_percent(True)
+if abs(percent) > 0:
+    news = get_news()
+    send_messages(news, percent)
