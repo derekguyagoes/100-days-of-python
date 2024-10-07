@@ -167,3 +167,4 @@ cython_debug/
 /intermediate/day_31/flash-card-project-start/data/words_to_learn.csv
 *.ini
 *.project_config
+/day_39/flight-deals-start/__MACOSX/
