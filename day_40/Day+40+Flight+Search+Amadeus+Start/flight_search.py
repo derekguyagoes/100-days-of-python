@@ -100,7 +100,7 @@ class FlightSearch:
         return code
 
     def check_flights(
-            self, origin_city_code, destination_city_code, from_time, to_time
+        self, origin_city_code, destination_city_code, from_time, to_time
     ):
         """
         Searches for flight options between two cities on specified departure and return dates
