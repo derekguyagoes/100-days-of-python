@@ -168,3 +168,4 @@ cython_debug/
 *.ini
 *.project_config
 /day_39/flight-deals-start/__MACOSX/
+/day_45/Starting Code - 100 movies to watch start/movies.txt

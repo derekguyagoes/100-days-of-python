@@ -1,24 +1,27 @@
+import requests
 from bs4 import BeautifulSoup
 
-with open("./website.html", "r") as site:
-    contents = site.read()
+response = requests.get("https://appbrewery.github.io/news.ycombinator.com/")
 
-soup = BeautifulSoup(contents, "html.parser")
+yc_web_page = response.text
 
-all_anchor_tags = soup.find_all("a")
-for tag in all_anchor_tags:
-    # print(tag.getText())
-    # print(tag.get("href"))
-    pass
+soup = BeautifulSoup(yc_web_page, "html.parser")
+articles = soup.find_all(name="a", class_="storylink")
+article_texts = []
+article_links = []
 
-heading = soup.find(name="h1", id="name")
-# print(heading)
+for article_tag in articles:
+    text = article_tag.getText()
+    article_texts.append(text)
+    link = article_tag.get("href")
+    article_links.append(link)
 
-section_heading = soup.find(name="h3", class_="heading")
-# print(section_heading)
+article_upvotes = [
+    int(score.getText().split()[0]) for score in soup.find_all("span", class_="score")
+]
 
-company_url = soup.select_one(selector="#name")
-# print(company_url)
+pos = article_upvotes.index(max(article_upvotes))
 
-headings = soup.select(".heading")
-print(headings)
+print(article_texts[pos])
+print(article_links[pos])
+# print(article_upvotes)
