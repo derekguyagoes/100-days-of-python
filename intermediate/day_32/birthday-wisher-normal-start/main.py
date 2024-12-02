@@ -10,7 +10,7 @@ def emailer(letter_to_send):
 
 today = (dt.datetime.now().month, dt.datetime.now().day)
 
-bdays = pandas.read_csv("./birthdays.csv")
+bdays = pandas.read_csv("birthdays.csv")
 
 birthdays_dict = {
     (data_row.month, data_row.day): data_row for (index, data_row) in bdays.iterrows()
@@ -18,7 +18,7 @@ birthdays_dict = {
 
 if today in birthdays_dict:
     birthday_person = birthdays_dict[today]
-    letters = os.listdir("./letter_templates")
+    letters = os.listdir("letter_templates")
     random_letter = random.choice(letters)
     with open(f"./letter_templates/{random_letter}", "r") as letter:
         contents = letter.read()
