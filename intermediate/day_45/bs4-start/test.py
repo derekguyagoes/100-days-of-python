@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-with open("./website.html", "r") as site:
+with open("website.html", "r") as site:
     contents = site.read()
 
 soup = BeautifulSoup(contents, "html.parser")

@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/intermediate/day_32/birthday-wisher-normal-start/birthdays.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
